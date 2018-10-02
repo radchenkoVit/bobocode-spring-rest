@@ -1,5 +1,6 @@
 package com.bobocode.radchenko.web.controllers;
 
+import com.bobocode.radchenko.entity.Movie;
 import com.bobocode.radchenko.service.MovieService;
 import com.bobocode.radchenko.web.ui.responce.model.MovieDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/movie")
@@ -26,12 +27,17 @@ public class MovieController {
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<MovieDto> getAll() {
-        return new ArrayList<>();
+        List<Movie> moviesEntity = movieService.findAll();
+        return moviesEntity.stream().map(this::toMovieDto).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public MovieDto getOne(@PathVariable(name = "id") String id) {
-        return new MovieDto();
+    public MovieDto getOne(@PathVariable(name = "id") Long id) {
+        return toMovieDto(movieService.findById(id));
+    }
+
+    private MovieDto toMovieDto(Movie movie) {
+        return MovieDto.builder().id(movie.getId()).name(movie.getName()).build();
     }
 }

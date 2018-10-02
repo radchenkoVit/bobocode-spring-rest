@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface MovieService {
     List<Movie> findAll();
-    Movie findById(String id);
+    Movie findById(Long id);
 }
