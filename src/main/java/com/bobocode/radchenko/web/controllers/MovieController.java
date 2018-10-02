@@ -3,6 +3,7 @@ package com.bobocode.radchenko.web.controllers;
 import com.bobocode.radchenko.entity.Movie;
 import com.bobocode.radchenko.service.MovieService;
 import com.bobocode.radchenko.web.ui.responce.model.MovieDto;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,11 +18,13 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/movie")
 public class MovieController {
+    private final ModelMapper mapper;
     private final MovieService movieService;
 
     @Autowired
-    public MovieController(MovieService movieService) {
+    public MovieController(MovieService movieService, ModelMapper mapper) {
         this.movieService = movieService;
+        this.mapper = mapper;
     }
 
     @GetMapping("/all")
@@ -38,6 +41,6 @@ public class MovieController {
     }
 
     private MovieDto toMovieDto(Movie movie) {
-        return MovieDto.builder().id(movie.getId()).name(movie.getName()).build();
+        return mapper.map(movie, MovieDto.class);
     }
 }
