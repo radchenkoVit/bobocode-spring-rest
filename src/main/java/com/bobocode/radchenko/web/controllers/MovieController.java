@@ -1,6 +1,6 @@
 package com.bobocode.radchenko.web.controllers;
 
-import com.bobocode.radchenko.entity.Movie;
+import com.bobocode.radchenko.web.ui.responce.model.MovieDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,13 +17,13 @@ public class MovieController {
 
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
-    public List<Movie> getAll() {
+    public List<MovieDto> getAll() {
         return new ArrayList<>();
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Movie getOne(@PathVariable(name = "id") String id) {
-        return new Movie();
+    public MovieDto getOne(@PathVariable(name = "id") String id) {
+        return new MovieDto();
     }
 }
