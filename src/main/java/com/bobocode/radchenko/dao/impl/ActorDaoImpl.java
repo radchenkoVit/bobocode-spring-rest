@@ -15,12 +15,12 @@ public class ActorDaoImpl implements ActorDao {
     @PersistenceContext
     private EntityManager em;
 
-    @Override
+    @Transactional(readOnly = true)
     public List<Actor> findAll() {
         return em.createQuery("Select a from Actor a").getResultList();
     }
 
-    @Override
+    @Transactional(readOnly = true)
     public Actor findById(long id) {
         return em.find(Actor.class, id);
     }

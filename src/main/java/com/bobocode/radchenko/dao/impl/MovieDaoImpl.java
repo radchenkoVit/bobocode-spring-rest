@@ -15,12 +15,12 @@ public class MovieDaoImpl implements MovieDao {
     @PersistenceContext
     private EntityManager em;
 
-    @Override
+    @Transactional(readOnly = true)
     public List<Movie> findAll() {
         return em.createQuery("Select m from Movie m").getResultList();
     }
 
-    @Override
+    @Transactional(readOnly = true)
     public Movie findById(long id) {
         return em.find(Movie.class, id);
     }

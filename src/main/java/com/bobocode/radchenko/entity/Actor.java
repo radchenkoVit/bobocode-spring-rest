@@ -3,7 +3,9 @@ package com.bobocode.radchenko.entity;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,8 +18,10 @@ import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
+@NoArgsConstructor
 @Getter
 @Setter
+@ToString
 @EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "actor")
