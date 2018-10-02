@@ -3,6 +3,7 @@ package com.bobocode.radchenko.web.controllers;
 import com.bobocode.radchenko.entity.Actor;
 import com.bobocode.radchenko.exceptions.EntityNotFoundException;
 import com.bobocode.radchenko.service.ActorService;
+import com.bobocode.radchenko.web.ui.request.ActorRequestDto;
 import com.bobocode.radchenko.web.ui.responce.model.ActorDto;
 import com.bobocode.radchenko.web.ui.responce.model.FullActorDto;
 import com.bobocode.radchenko.web.validator.Validator;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -25,7 +28,7 @@ import static java.lang.String.format;
 @RequestMapping("/actor")
 public class ActorController {
 
-    private final ModelMapper mapper;
+    private final ModelMapper mapper;//TODO: Taras, should move to Service layer?
     private final ActorService actorService;
     private final Validator validator;
 
@@ -65,6 +68,13 @@ public class ActorController {
             throw new EntityNotFoundException(format("Movie with id: %s not found", movieId));
         }
         actorService.addMovie(actorId, movieId);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addOne(@RequestBody ActorRequestDto actorRequestDto) {
+        Actor actor = mapper.map(actorRequestDto, Actor.class);
+        actorService.save(actor);
     }
 
     private ActorDto toActorDto(Actor actor) {

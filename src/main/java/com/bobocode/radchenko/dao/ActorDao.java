@@ -8,5 +8,6 @@ public interface ActorDao {
     List<Actor> findAll();
     Actor findById(long id);
     Actor findFullById(long id);
+    void save(Actor actor);
     void addMovie(long actorId, long movieId);
 }

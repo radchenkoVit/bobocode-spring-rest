@@ -36,6 +36,11 @@ public class ActorServiceImpl implements ActorService {
     }
 
     @Override
+    public void save(Actor actor) {
+        actorDao.save(actor);
+    }
+
+    @Override
     public void addMovie(Long actorId, Long movieId) {
         actorDao.addMovie(actorId, movieId);
     }

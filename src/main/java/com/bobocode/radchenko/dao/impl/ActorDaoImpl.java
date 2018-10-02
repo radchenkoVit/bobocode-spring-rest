@@ -34,6 +34,11 @@ public class ActorDaoImpl implements ActorDao {
                 .getSingleResult();
     }
 
+    //TODO: here not reurn managed Actor object
+    public void save(Actor actor) {
+        em.persist(actor);
+    }
+
     @Override
     public void addMovie(long actorId, long movieId) {
         Actor actor = em.find(Actor.class, actorId);

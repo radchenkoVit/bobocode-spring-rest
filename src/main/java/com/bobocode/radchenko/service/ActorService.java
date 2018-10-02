@@ -8,5 +8,6 @@ public interface ActorService {
     List<Actor> findAll();
     Actor findById(Long id);
     Actor findFullById(Long id);
+    void save(Actor actor);
     void addMovie(Long actorId, Long movieId);
 }
