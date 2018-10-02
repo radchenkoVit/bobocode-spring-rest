@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/actor")
 public class ActorController {
 
-    @GetMapping
+    @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<Actor> getAll() {
         return new ArrayList<>();
