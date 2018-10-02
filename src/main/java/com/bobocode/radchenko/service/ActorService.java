@@ -1,7 +1,10 @@
 package com.bobocode.radchenko.service;
 
-import org.springframework.stereotype.Service;
+import com.bobocode.radchenko.entity.Actor;
 
-@Service
-public class ActorService {
+import java.util.List;
+
+public interface ActorService {
+    List<Actor> findAll();
+    Actor findById(String id);
 }

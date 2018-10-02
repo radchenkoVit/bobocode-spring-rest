@@ -1,7 +1,10 @@
 package com.bobocode.radchenko.service;
 
-import org.springframework.stereotype.Service;
+import com.bobocode.radchenko.entity.Movie;
 
-@Service
-public class MovieService {
+import java.util.List;
+
+public interface MovieService {
+    List<Movie> findAll();
+    Movie findById(String id);
 }
