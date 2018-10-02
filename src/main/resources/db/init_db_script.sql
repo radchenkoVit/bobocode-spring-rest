@@ -24,5 +24,14 @@ create table movie_actor(
 );
 
 INSERT INTO actor values (1, 'Jackie', 'Chan');
+
+
+
 INSERT INTO movie values (1, 'The karate kid');
+INSERT INTO movie values (2, 'I am robot');
+INSERT INTO movie values (3, 'Matrix');
+INSERT INTO movie values (4, 'Kill Bill');
+INSERT INTO movie values (5, 'The Drunken Master');
+INSERT INTO movie values (6, 'Shrek');
+INSERT INTO movie values (7, 'Baby Driver');
 INSERT INTO movie_actor values (1, 1);

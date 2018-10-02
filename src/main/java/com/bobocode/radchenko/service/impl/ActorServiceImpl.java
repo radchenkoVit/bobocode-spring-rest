@@ -20,7 +20,6 @@ public class ActorServiceImpl implements ActorService {
         this.actorDao = actorDao;
     }
 
-
     @Override
     public List<Actor> findAll() {
         return actorDao.findAll();
@@ -29,5 +28,15 @@ public class ActorServiceImpl implements ActorService {
     @Override
     public Actor findById(Long id) {
         return actorDao.findById(id);
+    }
+
+    @Override
+    public Actor findFullById(Long id) {
+        return actorDao.findFullById(id);
+    }
+
+    @Override
+    public void addMovie(Long actorId, Long movieId) {
+        actorDao.addMovie(actorId, movieId);
     }
 }
