@@ -18,7 +18,7 @@ public class ActorDaoImpl implements ActorDao {
 
     @Transactional(readOnly = true)
     public List<Actor> findAll() {
-        return em.createQuery("Select a from Actor a").getResultList();
+        return em.createQuery("Select a from Actor a", Actor.class).getResultList();
     }
 
     @Transactional(readOnly = true)
@@ -28,8 +28,7 @@ public class ActorDaoImpl implements ActorDao {
 
     @Transactional(readOnly = true)
     public Actor findFullById(long id) {
-        //TODO: Taras, why it's cast?
-        return (Actor) em.createQuery("Select a from Actor a join fetch a.movies where a.id = :id")
+        return em.createQuery("Select a from Actor a join fetch a.movies where a.id = :id", Actor.class)
                 .setParameter("id", id)
                 .getSingleResult();
     }
